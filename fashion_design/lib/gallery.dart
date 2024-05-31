@@ -17,7 +17,7 @@ class GalleryScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Buat()),
+                MaterialPageRoute(builder: (context) => Buatan()),
               );
             },
           ),
@@ -68,7 +68,7 @@ class ImageWithButton extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Buat(imageUrl: imageUrl)),
+                MaterialPageRoute(builder: (context) => Buatan(imageUrl: imageUrl)),
               );
             },
             child: Text(buttonText),

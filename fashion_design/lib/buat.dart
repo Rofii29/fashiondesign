@@ -3,20 +3,21 @@ import 'text.dart'; // Import file text.dart
 import 'gallery.dart'; // Import file gallery.dart
 import 'beranda.dart'; // Import file beranda.dart
 import 'ukuran.dart'; // Import file ukuran.dart
+import 'mydesign.dart'; // Import file mydesign.dart
 
-void main() => runApp(Buat());
+void main() => runApp(Buatan());
 
-class Buat extends StatefulWidget {
+class Buatan extends StatefulWidget {
   final String imageUrl;
   final String text;
 
-  Buat({this.imageUrl = "", this.text = ""});
+  Buatan({this.imageUrl = "", this.text = ""});
 
   @override
-  _BuatState createState() => _BuatState();
+  _BuatanState createState() => _BuatanState();
 }
 
-class _BuatState extends State<Buat> {
+class _BuatanState extends State<Buatan> {
   int _selectedIndex = 1;
   String _displayText = "";
   String _selectedSize = "";
@@ -30,12 +31,27 @@ class _BuatState extends State<Buat> {
   }
 
   void _onItemTapped(int index) {
-    if (index == 0) {
-      Navigator.pop(context);
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Beranda()),
+        );
+        break;
+      case 1:
+        setState(() {
+          _selectedIndex = index;
+        });
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyDesign()),
+        );
+        break;
+      case 3:
+        // Tambahkan navigasi ke halaman Pesan jika ada
+        break;
     }
   }
 

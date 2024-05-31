@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'buat.dart'; // Ensure this file is in the correct path
+import 'mydesign.dart'; // Ensure this file is in the correct path
 
 void main() => runApp(MyApp());
 
@@ -16,7 +17,44 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Beranda extends StatelessWidget {
+class Beranda extends StatefulWidget {
+  @override
+  _BerandaState createState() => _BerandaState();
+}
+
+class _BerandaState extends State<Beranda> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Beranda()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Buatan()), // Navigate to Buatan
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyDesign()),
+        );
+        break;
+      case 3:
+        // Add the page you want to navigate to when the 'Pesan' icon is pressed.
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,21 +118,14 @@ class Beranda extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // Ensure labels are always visible
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blue,
         selectedItemColor: Colors.white,
         unselectedItemColor: Color.fromARGB(255, 171, 171, 171),
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        currentIndex: 0,
-        onTap: (int index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Buat()),
-            );
-          }
-        },
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -106,7 +137,7 @@ class Beranda extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.straighten),
-            label: 'My design',
+            label: 'My Design',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart),
